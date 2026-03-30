@@ -120,13 +120,6 @@ def run(
             help="Hugging Face API token.",
         ),
     ] = None,
-    json_output: Annotated[
-        bool,
-        typer.Option(
-            "--json",
-            help="Output raw JSON response.",
-        ),
-    ] = False,
 ) -> None:
     """Run inference on a model using Hugging Face Inference Providers."""
     client = OpenAI(base_url=ROUTER_BASE_URL, api_key=_resolve_token(token))
@@ -143,7 +136,12 @@ def run(
         messages.append({"role": "system", "content": system_prompt})
     messages.append({"role": "user", "content": text})
 
-    model_id = f"{model}:{provider}" if provider else model
+    if ":" in model:
+        model_id = model
+    elif provider:
+        model_id = f"{model}:{provider}"
+    else:
+        model_id = model
     kwargs: dict = {"model": model_id, "messages": messages, "stream": stream}
     if max_tokens is not None:
         kwargs["max_tokens"] = max_tokens
@@ -159,10 +157,7 @@ def run(
         print()
     else:
         response = client.chat.completions.create(**kwargs)
-        if json_output:
-            print(response.model_dump_json(indent=2))
-        else:
-            print(response.choices[0].message.content)
+        print(response.choices[0].message.content)
 
 
 @app.command(no_args_is_help=True)
