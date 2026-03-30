@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="hf inference banner" width="100%">
+</p>
+
 # hf-inference: `hf` CLI extension for Hugging Face Inference Providers
 
 Run inference on thousands of models through [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/en/index) directly from the command line.
