@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hf-inference"
+version = "0.1.0"
+description = "CLI extension for `hf` to run inference with Hugging Face Inference Providers."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "openai",
+    "typer",
+]
+
+[project.urls]
+Homepage = "https://github.com/huggingface/hf-inference"
+Repository = "https://github.com/huggingface/hf-inference"
+Issues = "https://github.com/huggingface/hf-inference/issues"
+
+[project.scripts]
+hf-inference = "hf_inference.cli:main"
