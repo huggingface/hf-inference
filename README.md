@@ -25,7 +25,6 @@ Pick a specific provider or routing policy with `--provider`:
 hf inference run "Hello" --model moonshotai/Kimi-K2.5 --provider novita
 hf inference run "Hello" --model Qwen/Qwen3.5-35B-A3B --provider cheapest
 hf inference run "Hello" --model Qwen/Qwen3.5-35B-A3B --provider fastest
-hf inference run "Hello" --model moonshotai/Kimi-K2.5 --provider preferred
 ```
 
 Pipe input via stdin:
